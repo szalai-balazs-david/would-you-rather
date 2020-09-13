@@ -9,8 +9,10 @@ class NavBar extends Component{
   }
 
   render(){
+    console.log(this.props)
     return (
       <nav className='nav'>
+        <p>Hello {this.props.user}</p>
         <ul>
           <li>
             <button onClick={this.onLogout}>
@@ -22,4 +24,11 @@ class NavBar extends Component{
     )
   }
 } 
-export default connect()(NavBar)
+
+function mapStateToProps({authedUser}){
+  return {
+    user: authedUser
+  }
+}
+
+export default connect(mapStateToProps)(NavBar)
