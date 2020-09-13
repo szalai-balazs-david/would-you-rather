@@ -1,5 +1,6 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
+import LoadingBar from 'react-redux-loading'
 import {handleInitialData} from '../actions/shared'
 import LoginPage from './LoginPage'
 
@@ -11,21 +12,28 @@ class App extends Component {
   render(){
     const {authenticated} = this.props
 
-    if(!authenticated){
-      return <LoginPage />
-    }
-
-    return (
-      <div>
-        App
-      </div>
+    return(
+      <Fragment>
+        <LoadingBar />
+        <div className='container'>
+          {this.props.loading === true
+            ? null
+            : this.props.authenticated
+              ? <div>
+                  App
+                </div>
+              : <LoginPage />
+          }
+        </div>
+      </Fragment>
     )
   }
 }
 
 function mapStateToProps({authedUser}){
   return {
-    authenticated: authedUser !== null
+    loading: authedUser === null,
+    authenticated: authedUser !== '' & authedUser !== null
   }
 }
 
