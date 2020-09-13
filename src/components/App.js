@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import LoadingBar from 'react-redux-loading'
 import {handleInitialData} from '../actions/shared'
 import LoginPage from './LoginPage'
+import NavBar from './NavBar'
 
 class App extends Component {
   componentDidMount(){
@@ -10,17 +11,17 @@ class App extends Component {
   }
 
   render(){
-    const {authenticated} = this.props
+    const {authenticated, loading} = this.props
 
     return(
       <Fragment>
         <LoadingBar />
         <div className='container'>
-          {this.props.loading === true
+          {loading
             ? null
-            : this.props.authenticated
+            : authenticated
               ? <div>
-                  App
+                  <NavBar />
                 </div>
               : <LoginPage />
           }
