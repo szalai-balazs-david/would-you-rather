@@ -2,10 +2,12 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import Dropdown from 'react-dropdown'
 import 'react-dropdown/style.css'
+import { setAuthedUser } from '../actions/authedUser'
 
 class LoginPage extends Component {
   onUserSelected = (e) => {
     console.log(e)
+    this.props.dispatch(setAuthedUser(e.value))
   }
 
   render(){
