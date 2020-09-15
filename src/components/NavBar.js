@@ -15,6 +15,21 @@ class NavBar extends Component{
         <p>Hello {this.props.user}</p>
         <ul>
           <li>
+            <NavLink to='/' exact activeClassName='active'>
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to='/create' exact activeClassName='active'>
+              Create New Question
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to='/leaderboard' exact activeClassName='active'>
+              Leader Board
+            </NavLink>
+          </li>
+          <li>
             <button onClick={this.onLogout}>
               Logout
             </button>
