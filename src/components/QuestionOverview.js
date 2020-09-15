@@ -1,11 +1,15 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
-class Question extends Component {
+class QuestionOverview extends Component {
   render(){
     const {question, author} = this.props
     return (
       <div>
+        <img 
+          src={author.avatarURL}
+          style={{width:100,height:100}}
+        />
         <p>{author.name} asks:</p>
         <p>Would you rather...</p>
         <p>{question.optionOne.text}</p>
@@ -24,4 +28,4 @@ function mapStateToProps({users, questions}, {id}){
   }
 }
 
-export default connect(mapStateToProps)(Question)
+export default connect(mapStateToProps)(QuestionOverview)
