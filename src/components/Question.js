@@ -4,7 +4,7 @@ class Question extends Component {
   render(){
     return (
       <div>
-        Question
+        Question {this.props.id}
       </div>
     )
   }
