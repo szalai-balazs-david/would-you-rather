@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import Question from './Question'
+import QuestionOverview from './QuestionOverview'
 
 class HomePage extends Component {
   state = {
@@ -27,7 +27,7 @@ class HomePage extends Component {
       <div>
         <button onClick={this.onShowAnswered}>Show Answered</button>
         <button onClick={this.onShowUnanswered}>Show Unanswered</button>
-        {questions.map(q => <Question key={q} id={q}/>)}
+        {questions.map(q => <QuestionOverview key={q} id={q}/>)}
       </div>
     )
   }

@@ -9,10 +9,14 @@ class NavBar extends Component{
   }
 
   render(){
-    console.log(this.props)
+    const {user} = this.props
     return (
       <nav className='nav'>
-        <p>Hello {this.props.user}</p>
+        <p>Hello {user.name}</p>
+        <img 
+          src={user.avatarURL}
+          style={{width:30,height:30}}
+        />
         <ul>
           <li>
             <NavLink to='/' exact activeClassName='active'>
@@ -40,9 +44,10 @@ class NavBar extends Component{
   }
 } 
 
-function mapStateToProps({authedUser}){
+function mapStateToProps({users, authedUser}){
+  const user = users[authedUser]
   return {
-    user: authedUser
+    user
   }
 }
 
