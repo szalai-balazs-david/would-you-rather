@@ -1,16 +1,31 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 class QuestionDetails extends Component {
+  state = {
+    toHome: false
+  }
   onOptionOne = (e) => {
     console.log(`Dispatch Option1 for ${this.props.question.id} by ${this.props.authedUser}`)
+    this.setState(() => ({
+      toHome: true
+    }))
   }
 
   onOptionTwo = (e) => {
     console.log(`Dispatch Option2 for ${this.props.question.id} by ${this.props.authedUser}`)
+    this.setState(() => ({
+      toHome: true
+    }))
   }
 
   render(){
+    const {toHome} = this.state
+    if(toHome){
+      return <Redirect to='/' />
+    }
+
     const {question, author, answered, isOptionOne} = this.props
     return (
       <div>
