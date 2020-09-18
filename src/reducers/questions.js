@@ -1,4 +1,4 @@
-import {RECEIVE_QUESTIONS} from '../actions/questions'
+import {RECEIVE_QUESTIONS, ADD_QUESTION, ANSWER_QUESTION, REMOVE_ANSWER} from '../actions/questions'
 
 export default function tweets (state = {}, action){
   switch(action.type){
@@ -6,6 +6,45 @@ export default function tweets (state = {}, action){
       return{
         ...state,
         ...action.questions
+      }
+    case ANSWER_QUESTION:
+      //ToDo: finish this. Need extension to users
+      console.log(action)
+      const {data} = action
+      return{
+        ...state,
+        [data.qid]: {
+          ...state[data.qid],
+          [data.answer]: {
+            ...state[data.qid][data.answer],
+            votes: state[data.qid][data.answer].votes.concat([data.authedUser])
+          }
+        }
+      }
+    case REMOVE_ANSWER:
+      //ToDo: finish this. Need extension to users
+      console.log(action)
+      return{
+        ...state,
+        [action.qid]: {
+          ...state[action.qid],
+          ['optionOne']: {
+            ...state[action.qid]['optionOne'],
+            votes: state[action.qid]['optionOne'].votes.filter(x => x !== action.authedUser)
+          },
+          ['optionTwo']: {
+            ...state[action.qid]['optionTwo'],
+            votes: state[action.qid]['optionTwo'].votes.filter(x => x !== action.authedUser)
+          }
+        }
+      }
+    case ADD_QUESTION:
+      //ToDo: finish this
+      console.log(action)
+      const {question} = action
+      return{
+        ...state,
+        [question.id]: question,
       }
     default:
       return state
