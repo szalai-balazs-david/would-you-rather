@@ -13,37 +13,17 @@ export function receiveQuestions (questions) {
   }
 }
 
-function removeAnswer(data){
+export function removeAnswer(data){
   return{
     type: REMOVE_ANSWER,
     data
   }
 }
 
-function answerQuestion(data){
+export function answerQuestion(data){
   return {
     type: ANSWER_QUESTION,
     data
-  }
-}
-
-export function handleAnswerQuestion (qid, isOptionOne) {
-  return (dispatch, getState) => {
-    const {authedUser} = getState()
-    const answer = isOptionOne ? 'optionOne' : 'optionTwo'
-
-    dispatch(answerQuestion({qid, authedUser, answer}))
-    
-    return saveAnswer({
-      authedUser,
-      qid,
-      answer
-    })
-    .catch((e) => {
-      console.warn('Error in handleAnswerQuestion: ', e)
-      dispatch(removeAnswer({qid, authedUser}))
-      alert('There was an error answering the question. Try again.')
-    })
   }
 }
 

@@ -22,8 +22,6 @@ export default function tweets (state = {}, action){
         }
       }
     case REMOVE_ANSWER:
-      //ToDo: finish this. Need extension to users
-      console.log(action)
       return{
         ...state,
         [action.qid]: {
@@ -39,8 +37,6 @@ export default function tweets (state = {}, action){
         }
       }
     case ADD_QUESTION:
-      //ToDo: finish this
-      console.log(action)
       const {question} = action
       return{
         ...state,
