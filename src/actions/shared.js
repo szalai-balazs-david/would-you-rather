@@ -23,7 +23,7 @@ export function handleAnswerQuestion (qid, isOptionOne) {
     const answer = isOptionOne ? 'optionOne' : 'optionTwo'
 
     dispatch(answerQuestion({qid, authedUser, answer}))
-    dispatch(addAnsweredQuestion({qid, authedUser}))
+    dispatch(addAnsweredQuestion({qid, authedUser, answer}))
     
     return saveAnswer({
       authedUser,

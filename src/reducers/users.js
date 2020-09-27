@@ -18,23 +18,31 @@ export default function users (state = {}, action){
 }
 
 function addAnsweredQuestion(state, action){
-  const {data} = action
+  const {qid, authedUser} = action.data
+  const answer = new Object()
+  answer[qid] = action.data.answer
   return{
     ...state,
-    [data.authedUser]:{
-      ...state[data.authedUser],
-      questions: state[data.authedUser].questions.concat(data.qid)
+    [authedUser]:{
+      ...state[authedUser],
+      answers: {
+        ...state[authedUser].answers,
+        ...answer
+      }
     }
   }
 }
 
 function removeAnsweredQuestion(state, action){
-  const {data} = action
+  const {authedUser, qid} = action.data
+
+  const {[qid]: omit, ...answers} = state[authedUser].answers
+
   return{
     ...state,
-    [data.authedUser]:{
-      ...state[data.authedUser],
-      questions: state[data.authedUser].questions.filter(x => x !== data.qid)
+    [authedUser]:{
+      ...state[authedUser],
+      answers
     }
   }
 }
