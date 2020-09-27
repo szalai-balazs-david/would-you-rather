@@ -35,10 +35,11 @@ class HomePage extends Component {
 
 function mapStateToProps({authedUser, questions}){
   const questionValues = Object.values(questions)
-  const answeredQuestions = questionValues
+  const sortedQuestions = questionValues.sort((a, b) => (a.timestamp < b.timestamp) ? 1 : -1)
+  const answeredQuestions = sortedQuestions
     .filter(q => q.optionOne.votes.includes(authedUser) || q.optionTwo.votes.includes(authedUser))
     .map(q => q.id)
-  const unansweredQuestions = questionValues
+  const unansweredQuestions = sortedQuestions
     .filter(q => !answeredQuestions.includes(q.id))
     .map(q => q.id)
   return {
