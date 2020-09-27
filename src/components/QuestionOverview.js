@@ -19,7 +19,7 @@ class QuestionOverview extends Component {
     const {question, author} = this.props
 
     if(this.state.redirect){
-      return <Redirect to={`/question/${question.id}`} />
+      return <Redirect to={`/questions/${question.id}`} />
     }
 
     return (
