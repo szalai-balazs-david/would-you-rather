@@ -1,11 +1,29 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 class QuestionOverview extends Component {
+  state = {
+    redirect: false
+  }
+
+  handleClick = (e) => {
+    e.preventDefault()
+    
+    this.setState(() => ({
+      redirect: true
+    }))
+  }
+
   render(){
     const {question, author} = this.props
+
+    if(this.state.redirect){
+      return <Redirect to={`/question/${question.id}`} />
+    }
+
     return (
-      <div>
+      <div onClick={this.handleClick}>
         <img 
           src={author.avatarURL}
           style={{width:100,height:100}}
