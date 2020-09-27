@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import {handleAnswerQuestion} from '../actions/shared'
+import AnsweredQuestion from './AnsweredQuestion'
 
 class QuestionDetails extends Component {
   state = {
@@ -36,6 +37,10 @@ class QuestionDetails extends Component {
     }
 
     const {question, author, answered, isOptionOne} = this.props
+    if(answered){
+      return <AnsweredQuestion id={question.id} />
+    }
+
     return (
       <div>
         <p>Would you rather...</p>
