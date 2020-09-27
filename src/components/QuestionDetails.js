@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import {handleAnswerQuestion} from '../actions/shared'
 import AnsweredQuestion from './AnsweredQuestion'
+import NotFound from './NotFound'
 
 class QuestionDetails extends Component {
   state = {
@@ -31,6 +32,9 @@ class QuestionDetails extends Component {
   }
 
   render(){
+    if(this.props.notFound){
+      return <NotFound />
+    }
     const {toHome} = this.state
     if(toHome){
       return <Redirect to='/' />
@@ -57,6 +61,11 @@ class QuestionDetails extends Component {
 
 function mapStateToProps({users, questions, authedUser}, props){
   const {id} = props.match.params
+  if(!(id in questions)){
+    return {
+      notFound: true
+    }
+  }
   const question = questions[id]
   const author = users[question.author]
   const answered = question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser)
@@ -66,7 +75,8 @@ function mapStateToProps({users, questions, authedUser}, props){
     question,
     authedUser,
     answered,
-    isOptionOne
+    isOptionOne,
+    notFound: false
   }
 }
 
