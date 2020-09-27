@@ -38,8 +38,11 @@ class QuestionDetails extends Component {
     const {question, author, answered, isOptionOne} = this.props
     return (
       <div>
-        <p>{author.name} asks:</p>
         <p>Would you rather...</p>
+        <img 
+          src={author.avatarURL}
+          style={{width:100,height:100}}
+        />
         <button onClick={this.onOptionOne} disabled={answered}>{question.optionOne.text}{answered && isOptionOne && 'Selected'}</button>
         <button onClick={this.onOptionTwo} disabled={answered}>{question.optionTwo.text}{answered && !isOptionOne && 'Selected'}</button>
       </div>
