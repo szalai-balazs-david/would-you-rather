@@ -6,18 +6,12 @@ import AnsweredQuestion from './AnsweredQuestion'
 import NotFound from './NotFound'
 
 class QuestionDetails extends Component {
-  state = {
-    toHome: false
-  }
   onOptionOne = (e) => {
     e.preventDefault()
     console.log(`Dispatch Option1 for ${this.props.question.id} by ${this.props.authedUser}`)
 
     const {dispatch} = this.props
     dispatch(handleAnswerQuestion(this.props.question.id, true))
-    this.setState(() => ({
-      toHome: true
-    }))
   }
 
   onOptionTwo = (e) => {
@@ -26,18 +20,11 @@ class QuestionDetails extends Component {
 
     const {dispatch} = this.props
     dispatch(handleAnswerQuestion(this.props.question.id, false))
-    this.setState(() => ({
-      toHome: true
-    }))
   }
 
   render(){
     if(this.props.notFound){
       return <NotFound />
-    }
-    const {toHome} = this.state
-    if(toHome){
-      return <Redirect to='/' />
     }
 
     const {question, author, answered, isOptionOne} = this.props
