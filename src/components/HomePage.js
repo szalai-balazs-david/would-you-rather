@@ -4,7 +4,7 @@ import QuestionOverview from './QuestionOverview'
 
 class HomePage extends Component {
   state = {
-    showAnswered: true
+    showAnswered: false
   }
 
   onShowAnswered = (e) => {
