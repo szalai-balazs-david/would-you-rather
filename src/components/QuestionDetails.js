@@ -1,6 +1,5 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
-import { Redirect } from 'react-router-dom'
 import {handleAnswerQuestion} from '../actions/shared'
 import AnsweredQuestion from './AnsweredQuestion'
 import NotFound from './NotFound'
