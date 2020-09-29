@@ -20,7 +20,7 @@ export default function users (state = {}, action){
 
 function addAnsweredQuestion(state, action){
   const {qid, authedUser} = action.data
-  const answer = new Object()
+  const answer = {}
   answer[qid] = action.data.answer
   return{
     ...state,

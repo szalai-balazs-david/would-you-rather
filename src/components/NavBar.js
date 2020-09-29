@@ -16,6 +16,7 @@ class NavBar extends Component{
         <img 
           src={user.avatarURL}
           style={{width:30,height:30}}
+          alt={user.name}
         />
         <ul>
           <li>

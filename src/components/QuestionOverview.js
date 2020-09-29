@@ -27,6 +27,7 @@ class QuestionOverview extends Component {
         <img 
           src={author.avatarURL}
           style={{width:100,height:100}}
+          alt={author.name}
         />
         <p>{author.name} asks:</p>
         <p>Would you rather...</p>

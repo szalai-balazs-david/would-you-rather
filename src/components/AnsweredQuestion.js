@@ -1,4 +1,5 @@
-import React, {Component, Fragment} from 'react'
+import userEvent from '@testing-library/user-event'
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
 class AnsweredQuestion extends Component {
@@ -19,6 +20,7 @@ class AnsweredQuestion extends Component {
               <img 
                 src={author.avatarURL}
                 style={{width:100,height:100}}
+                alt={userEvent.name}
               />
             </td>
           </tr>

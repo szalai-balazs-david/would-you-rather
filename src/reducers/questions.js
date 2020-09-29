@@ -26,11 +26,11 @@ export default function tweets (state = {}, action){
         ...state,
         [action.qid]: {
           ...state[action.qid],
-          ['optionOne']: {
+          optionOne: {
             ...state[action.qid]['optionOne'],
             votes: state[action.qid]['optionOne'].votes.filter(x => x !== action.authedUser)
           },
-          ['optionTwo']: {
+          optionTwo: {
             ...state[action.qid]['optionTwo'],
             votes: state[action.qid]['optionTwo'].votes.filter(x => x !== action.authedUser)
           }

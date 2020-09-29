@@ -11,6 +11,7 @@ class LeaderboardEntry extends Component {
         <img 
           src={user.avatarURL}
           style={{width:100,height:100}}
+          alt={user.name}
         />
         <p>Points: {questions + answers}</p>
         <p>Questions created: {questions}</p>

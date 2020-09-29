@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react'
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {handleAnswerQuestion} from '../actions/shared'
 import AnsweredQuestion from './AnsweredQuestion'
@@ -37,6 +37,7 @@ class QuestionDetails extends Component {
         <img 
           src={author.avatarURL}
           style={{width:100,height:100}}
+          alt={author.name}
         />
         <button onClick={this.onOptionOne} disabled={answered}>{question.optionOne.text}{answered && isOptionOne && 'Selected'}</button>
         <button onClick={this.onOptionTwo} disabled={answered}>{question.optionTwo.text}{answered && !isOptionOne && 'Selected'}</button>
