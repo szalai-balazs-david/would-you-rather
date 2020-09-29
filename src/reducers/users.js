@@ -1,5 +1,4 @@
-import { connectAdvanced } from 'react-redux'
-import {RECEIVE_USERS, ADD_ANSWERED_QUESTION, REMOVE_ANSWERED_QUESTION} from '../actions/users'
+import {RECEIVE_USERS, ADD_ANSWERED_QUESTION, REMOVE_ANSWERED_QUESTION, ADD_NEW_QUESTION} from '../actions/users'
 
 export default function users (state = {}, action){
   switch(action.type){
@@ -12,6 +11,8 @@ export default function users (state = {}, action){
       return addAnsweredQuestion(state, action)
     case REMOVE_ANSWERED_QUESTION:
       return removeAnsweredQuestion(state, action)
+      case ADD_NEW_QUESTION:
+        return addNewQuestion(state, action)
     default:
       return state
   }
@@ -43,6 +44,18 @@ function removeAnsweredQuestion(state, action){
     [authedUser]:{
       ...state[authedUser],
       answers
+    }
+  }
+}
+
+function addNewQuestion(state, action){
+  const {authedUser, qid} = action.data
+
+  return{
+    ...state,
+    [authedUser]:{
+      ...state[authedUser],
+      questions: state[authedUser].questions.concat(qid)
     }
   }
 }

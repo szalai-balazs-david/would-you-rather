@@ -1,6 +1,6 @@
-import { getInitialData, saveAnswer } from '../utils/api'
-import { receiveUsers, addAnsweredQuestion, removeAnsweredQuestion } from '../actions/users'
-import { receiveQuestions,answerQuestion, removeAnswer } from '../actions/questions'
+import { getInitialData, saveAnswer, saveQuestion } from '../utils/api'
+import { receiveUsers, addAnsweredQuestion, addNewQuestion } from '../actions/users'
+import { receiveQuestions,answerQuestion, removeAnswer, addQuestion } from '../actions/questions'
 import { setAuthedUser } from '../actions/authedUser'
 import {showLoading, hideLoading} from 'react-redux-loading'
 
@@ -36,5 +36,23 @@ export function handleAnswerQuestion (qid, isOptionOne) {
       dispatch(addAnsweredQuestion({qid, authedUser}))
       alert('There was an error answering the question. Try again.')
     })
+  }
+}
+
+export function handleAddQuestion (optionOneText, optionTwoText) {
+  return (dispatch, getState) => {
+    const {authedUser} = getState()
+
+    dispatch(showLoading())
+    return saveQuestion({
+      author: authedUser,
+      optionOneText,
+      optionTwoText
+    })
+    .then((question) => {
+      dispatch(addQuestion(question))
+      dispatch(addNewQuestion({authedUser, qid: question.id}))
+    })
+    .then(() => dispatch(hideLoading()))
   }
 }
