@@ -12,19 +12,18 @@ code {
     monospace;
 }
 
-.login {
+.center {
   text-align: center;
 }
 
-.center {
+.login {
   margin: auto;
   width: 50%;
   border: 3px solid green;
   padding: 10px;
-}
-
-.user-selector {
-  text-align: center;
+  position: absolute;
+  top: 30%;
+  left: 25%;
 }
 
 .question {
@@ -39,4 +38,50 @@ code {
   border: 1px solid black;
   width: 300px;
   text-align: center;
+}
+
+.navbar-ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.navbar-li {
+  float: left;
+}
+
+.navbar-li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+.navbar-li a:hover {
+  background-color: #111;
+}
+
+.active {
+  background-color: #4CAF50;
+}
+
+.right-aligned {
+  float: right;
+}
+
+.logout {
+  background-color: #333;
+  width: 200px;
+  height: 50px;
+  color: white;
+  border: none;
+  font-size: medium;
+  cursor:pointer;
+}
+.logout:hover {
+  background-color: #111;
 }

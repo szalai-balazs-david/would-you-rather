@@ -18,24 +18,24 @@ class NavBar extends Component{
           style={{width:30,height:30}}
           alt={user.name}
         />
-        <ul>
-          <li>
+        <ul className='navbar-ul'>
+          <li className='navbar-li'>
             <NavLink to='/' exact activeClassName='active'>
               Home
             </NavLink>
           </li>
-          <li>
+          <li className='navbar-li'>
             <NavLink to='/add' exact activeClassName='active'>
               Create New Question
             </NavLink>
           </li>
-          <li>
+          <li className='navbar-li'>
             <NavLink to='/leaderboard' exact activeClassName='active'>
               Leader Board
             </NavLink>
           </li>
-          <li>
-            <button onClick={this.onLogout}>
+          <li onClick={this.onLogout} className='right-aligned'>
+            <button className='logout'>
               Logout
             </button>
           </li>

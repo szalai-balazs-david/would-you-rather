@@ -19,10 +19,10 @@ class LoginPage extends Component {
     })
 
     return (
-      <div className='center'>
-        <p className='login'>Login</p>
+      <div className='login'>
+        <p className='center'>Login</p>
         <Dropdown 
-          className='user-selector'
+          className='center'
           options={options} 
           placeholder="Who are you?" 
           onChange={this.onUserSelected} 
