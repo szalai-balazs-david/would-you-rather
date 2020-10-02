@@ -49,21 +49,24 @@ class CreateQuestion extends Component {
 
     return (
       <div>
-        <h3>Would you rather</h3>
+        <h3 className='center'>Would you rather...</h3>
         <form onSubmit={this.handleSubmit}>
           <textarea
+            className='option-new'
             placeholder="Option One"
             value={optionOne}
             onChange={this.handleChangeOptionOne}
             maxLength={280}
           />
           <textarea
+            className='option-new'
             placeholder="Option Two"
             value={optionTwo}
             onChange={this.handleChangeOptionTwo}
             maxLength={280}
           />
           <button
+            className='create-button'
             type='submit'
             disabled={optionOne === '' | optionTwo === ''}>
               Create

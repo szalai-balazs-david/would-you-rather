@@ -1,69 +1,47 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {handleAnswerQuestion} from '../actions/shared'
-import AnsweredQuestion from './AnsweredQuestion'
-import NotFound from './NotFound'
 
 class QuestionDetails extends Component {
   onOptionOne = (e) => {
     e.preventDefault()
-    console.log(`Dispatch Option1 for ${this.props.question.id} by ${this.props.authedUser}`)
-
     const {dispatch} = this.props
     dispatch(handleAnswerQuestion(this.props.question.id, true))
   }
 
   onOptionTwo = (e) => {
     e.preventDefault()
-    console.log(`Dispatch Option2 for ${this.props.question.id} by ${this.props.authedUser}`)
-
     const {dispatch} = this.props
     dispatch(handleAnswerQuestion(this.props.question.id, false))
   }
 
   render(){
-    if(this.props.notFound){
-      return <NotFound />
-    }
-
-    const {question, author, answered, isOptionOne} = this.props
-    if(answered){
-      return <AnsweredQuestion id={question.id} />
-    }
+    const {question, author} = this.props
 
     return (
       <div>
-        <p>Would you rather...</p>
         <img 
+          className='center-block'
           src={author.avatarURL}
           style={{width:100,height:100}}
           alt={author.name}
         />
-        <button onClick={this.onOptionOne} disabled={answered}>{question.optionOne.text}{answered && isOptionOne && 'Selected'}</button>
-        <button onClick={this.onOptionTwo} disabled={answered}>{question.optionTwo.text}{answered && !isOptionOne && 'Selected'}</button>
+        <p className='center'>{author.name} asks:</p>
+        <p className='center'>Would you rather...</p>
+        <button className='option-button' onClick={this.onOptionOne}>{question.optionOne.text}</button>
+        <button className='option-button' onClick={this.onOptionTwo}>{question.optionTwo.text}</button>
       </div>
     )
   }
 }
 
-function mapStateToProps({users, questions, authedUser}, props){
-  const {id} = props.match.params
-  if(!(id in questions)){
-    return {
-      notFound: true
-    }
-  }
+function mapStateToProps({users, questions, authedUser}, {id}){
   const question = questions[id]
   const author = users[question.author]
-  const answered = question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser)
-  const isOptionOne = question.optionOne.votes.includes(authedUser)
   return {
     author,
     question,
     authedUser,
-    answered,
-    isOptionOne,
-    notFound: false
   }
 }
 

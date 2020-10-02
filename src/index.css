@@ -104,6 +104,8 @@ code {
   display: inline-block;
   font-size: 16px;
   border-radius: 4px;
+  cursor:pointer;
+  width: 50%;
 }
 
 .question-group-selector:hover {
@@ -141,6 +143,93 @@ code {
   border-radius: 20px;
 }
 
+.option-button{
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+  width:46%;
+  height: 120px;
+  background-color: yellowgreen;
+  margin: 2%;
+  border-radius: 20px;
+  cursor:pointer;
+}
+
+.option-button:hover {
+  background-color: green;
+}
+
+.option-new{
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+  width:45%;
+  height: 120px;
+  border-color: yellowgreen;
+  margin: 2%;
+  border-radius: 20px;
+}
+
+.create-button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+  height: 50px;
+  border-radius: 20px;
+  background-color: orange;
+  font-weight: bold;
+  color: black;
+}
+
+.create-button:disabled {
+  background-color: grey;
+}
+
+.create-button:hover:enabled {
+  background-color: orangered;
+  cursor:pointer;
+}
+
 .selected {
   font-weight: bold;
+}
+
+.leaderboard-first {
+  border: 5px solid gold;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+}
+
+.leaderboard-second {
+  border: 4px solid silver;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+}
+
+.leaderboard-third {
+  border: 3px solid #6a3805;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+}
+
+.leaderboard-entry {
+  border: 2px solid grey;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+}
+
+.leaderboard-image {
+  float: left;
+  width: 130px;
+  height: 130px;
+  margin-right: 50px;
 }

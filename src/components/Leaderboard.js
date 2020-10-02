@@ -8,8 +8,7 @@ class Leaderboard extends Component {
 
     return (
       <div>
-        Leader Board
-        {users.map(x => <LeaderBoardEntry key={x} id={x} />)}
+        {users.map(x => <LeaderBoardEntry key={x} id={x} position={users.indexOf(x)+1} />)}
       </div>
     )
   }

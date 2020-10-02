@@ -3,32 +3,38 @@ import {connect} from 'react-redux'
 
 class LeaderboardEntry extends Component {
   render(){
-    const {user, answers, questions} = this.props
+    const {user, answers, questions, position} = this.props
 
     return (
-      <div>
-        <p>{user.name}</p>
+      <div className={
+        position === 1 ? 'leaderboard-first' : 
+        position === 2 ? 'leaderboard-second' :
+        position === 3 ? 'leaderboard-third' : 'leaderboard-entry'}>
         <img 
+          className='leaderboard-image'
           src={user.avatarURL}
-          style={{width:100,height:100}}
           alt={user.name}
         />
-        <p>Points: {questions + answers}</p>
-        <p>Questions created: {questions}</p>
-        <p>Questions answered: {answers}</p>
+        <p>{position}.: {user.name}</p>
+        <ul>
+          <li>Points: {questions + answers}</li>
+          <li>Questions created: {questions}</li>
+          <li>Questions answered: {answers}</li>
+        </ul>
       </div>
     )
   }
 }
 
-function mapStateToProps({users}, {id}){
+function mapStateToProps({users}, {id, position}){
   const user = users[id]
   const answers = Object.values(user.answers).length
   const questions = user.questions.length
   return {
     user,
     answers,
-    questions
+    questions,
+    position
   }
 }
 
