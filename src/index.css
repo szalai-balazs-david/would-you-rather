@@ -16,6 +16,13 @@ code {
   text-align: center;
 }
 
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
+
 .login {
   margin: auto;
   width: 50%;
@@ -75,13 +82,65 @@ code {
 
 .logout {
   background-color: #333;
-  width: 200px;
+  width: 100px;
   height: 50px;
   color: white;
   border: none;
   font-size: medium;
   cursor:pointer;
 }
+
 .logout:hover {
   background-color: #111;
+}
+
+.question-group-selector {
+  background-color: #333;
+  border: none;
+  color: white;
+  padding: 12px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.question-group-selector:hover {
+  background-color: #111;
+}
+
+.question-group-selector:disabled {
+  background-color: #4CAF50;
+}
+
+.question-overview{
+  margin: auto;
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
+}
+
+.option{
+  display: inline-block;
+  text-align: center;
+  width:46%;
+  background-color: yellowgreen;
+  margin: 2%;
+  border-radius: 20px;
+}
+
+.option-detailed{
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+  width:46%;
+  height: 120px;
+  background-color: yellowgreen;
+  margin: 2%;
+  border-radius: 20px;
+}
+
+.selected {
+  font-weight: bold;
 }

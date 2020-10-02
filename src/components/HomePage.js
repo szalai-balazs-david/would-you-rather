@@ -25,8 +25,22 @@ class HomePage extends Component {
     const questions = showAnswered ? answeredQuestions : unansweredQuestions
     return (
       <div>
-        <button onClick={this.onShowAnswered}>Show Answered</button>
-        <button onClick={this.onShowUnanswered}>Show Unanswered</button>
+        <div className='center-block'>
+          <button 
+            className='question-group-selector' 
+            onClick={this.onShowAnswered}
+            disabled={this.state.showAnswered}
+          >
+              Show Answered
+          </button>
+          <button 
+            className='question-group-selector' 
+            onClick={this.onShowUnanswered}
+            disabled={!this.state.showAnswered}
+          >
+              Show Unanswered
+          </button>
+        </div>
         {questions.map(q => <QuestionOverview key={q} id={q}/>)}
       </div>
     )

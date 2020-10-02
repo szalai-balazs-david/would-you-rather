@@ -23,16 +23,17 @@ class QuestionOverview extends Component {
     }
 
     return (
-      <div onClick={this.handleClick}>
+      <div className='question-overview' onClick={this.handleClick}>
         <img 
+          className='center-block'
           src={author.avatarURL}
           style={{width:100,height:100}}
           alt={author.name}
         />
-        <p>{author.name} asks:</p>
-        <p>Would you rather...</p>
-        <p>{question.optionOne.text}</p>
-        <p>{question.optionTwo.text}</p>
+        <p className='center'>{author.name} asks:</p>
+        <p className='center'>Would you rather...</p>
+        <div className='option'><p>{question.optionOne.text}</p></div>
+        <div className='option'><p>{question.optionTwo.text}</p></div>
       </div>
     )
   }
