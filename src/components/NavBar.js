@@ -38,12 +38,13 @@ class NavBar extends Component{
               Leader Board
             </NavLink>
           </li>
-          {authenticated && 
-            <li onClick={this.onLogout} className='right-aligned'>
-              <button className='logout'>
-                Logout
-              </button>
-            </li>
+          {authenticated 
+            ? <li onClick={this.onLogout} className='right-aligned'>
+                <button className='logout'>
+                  Logout
+                </button>
+              </li>
+            : <div></div>
           }
         </ul>
       </nav>
