@@ -1,4 +1,4 @@
-import {RECEIVE_USERS, ADD_ANSWERED_QUESTION, REMOVE_ANSWERED_QUESTION, ADD_NEW_QUESTION} from '../actions/users'
+import {RECEIVE_USERS, ADD_QUESTION, ANSWER_QUESTION, REMOVE_ANSWER} from '../actions/types'
 
 export default function users (state = {}, action){
   switch(action.type){
@@ -7,12 +7,12 @@ export default function users (state = {}, action){
         ...state,
         ...action.users
       }
-    case ADD_ANSWERED_QUESTION:
+    case ANSWER_QUESTION:
       return addAnsweredQuestion(state, action)
-    case REMOVE_ANSWERED_QUESTION:
+    case REMOVE_ANSWER:
       return removeAnsweredQuestion(state, action)
-      case ADD_NEW_QUESTION:
-        return addNewQuestion(state, action)
+    case ADD_QUESTION:
+      return addNewQuestion(state, action)
     default:
       return state
   }
@@ -49,13 +49,14 @@ function removeAnsweredQuestion(state, action){
 }
 
 function addNewQuestion(state, action){
-  const {authedUser, qid} = action.data
+  console.log(action)
+  const {author, id} = action.question
 
   return{
     ...state,
-    [authedUser]:{
-      ...state[authedUser],
-      questions: state[authedUser].questions.concat(qid)
+    [author]:{
+      ...state[author],
+      questions: state[author].questions.concat(id)
     }
   }
 }

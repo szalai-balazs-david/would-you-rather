@@ -1,8 +1,30 @@
 import { getInitialData, saveAnswer, saveQuestion } from '../utils/api'
-import { receiveUsers, addAnsweredQuestion, addNewQuestion } from '../actions/users'
-import { receiveQuestions,answerQuestion, removeAnswer, addQuestion } from '../actions/questions'
+import { receiveUsers } from '../actions/users'
+import { receiveQuestions } from '../actions/questions'
 import { setAuthedUser } from '../actions/authedUser'
 import {showLoading, hideLoading} from 'react-redux-loading'
+import {ADD_QUESTION, ANSWER_QUESTION, REMOVE_ANSWER} from '../actions/types'
+
+export function removeAnswer(data){
+  return{
+    type: REMOVE_ANSWER,
+    data
+  }
+}
+
+export function answerQuestion(data){
+  return {
+    type: ANSWER_QUESTION,
+    data
+  }
+}
+
+export function addQuestion(question){
+  return {
+    type: ADD_QUESTION,
+    question
+  }
+}
 
 export function handleInitialData () {
   return (dispatch) => {
@@ -23,7 +45,6 @@ export function handleAnswerQuestion (qid, isOptionOne) {
     const answer = isOptionOne ? 'optionOne' : 'optionTwo'
 
     dispatch(answerQuestion({qid, authedUser, answer}))
-    dispatch(addAnsweredQuestion({qid, authedUser, answer}))
     
     return saveAnswer({
       authedUser,
@@ -33,7 +54,6 @@ export function handleAnswerQuestion (qid, isOptionOne) {
     .catch((e) => {
       console.warn('Error in handleAnswerQuestion: ', e)
       dispatch(removeAnswer({qid, authedUser}))
-      dispatch(addAnsweredQuestion({qid, authedUser}))
       alert('There was an error answering the question. Try again.')
     })
   }
@@ -51,7 +71,6 @@ export function handleAddQuestion (optionOneText, optionTwoText) {
     })
     .then((question) => {
       dispatch(addQuestion(question))
-      dispatch(addNewQuestion({authedUser, qid: question.id}))
     })
     .then(() => dispatch(hideLoading()))
   }

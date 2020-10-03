@@ -1,4 +1,4 @@
-import {RECEIVE_QUESTIONS, ADD_QUESTION, ANSWER_QUESTION, REMOVE_ANSWER} from '../actions/questions'
+import {RECEIVE_QUESTIONS, ADD_QUESTION, ANSWER_QUESTION, REMOVE_ANSWER} from '../actions/types'
 
 export default function tweets (state = {}, action){
   switch(action.type){
@@ -8,7 +8,6 @@ export default function tweets (state = {}, action){
         ...action.questions
       }
     case ANSWER_QUESTION:
-      //ToDo: finish this. Need extension to users
       console.log(action)
       const {data} = action
       return{
