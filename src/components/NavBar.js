@@ -9,15 +9,19 @@ class NavBar extends Component{
   }
 
   render(){
-    const {user} = this.props
+    const {user, authenticated} = this.props
     return (
       <nav className='nav'>
-        <img 
-          src={user.avatarURL}
-          style={{width:30,height:30}}
-          alt={user.name}
-        />
-        <span>Hello {user.name}</span>
+        {authenticated 
+        ? <div>
+            <img 
+              src={user.avatarURL}
+              style={{width:30,height:30}}
+              alt={user.name}
+            />
+            <span>Hello {user.name}</span>
+          </div>
+        : <p>Not logged in</p>}
         <ul className='navbar-ul'>
           <li className='navbar-li'>
             <NavLink to='/' exact activeClassName='active'>
@@ -48,7 +52,8 @@ class NavBar extends Component{
 function mapStateToProps({users, authedUser}){
   const user = users[authedUser]
   return {
-    user
+    user,
+    authenticated: authedUser !== '' & authedUser !== null
   }
 }
 

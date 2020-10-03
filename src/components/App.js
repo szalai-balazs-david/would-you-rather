@@ -23,12 +23,12 @@ class App extends Component {
         <Fragment>
           <LoadingBar />
           <div className='container'>
+            <NavBar />
             {loading
               ? null
               : !authenticated
                 ? <LoginPage />
                 : <div>
-                    <NavBar />
                     <div>
                       <Route path='/' exact component={HomePage} />
                       <Route path='/add' exact component={CreateQuestion} />
