@@ -21,7 +21,7 @@ class NavBar extends Component{
             />
             <span>Hello {user.name}</span>
           </div>
-        : <p>Not logged in</p>}
+        : <p>You are not logged in</p>}
         <ul className='navbar-ul'>
           <li className='navbar-li'>
             <NavLink to='/' exact activeClassName='active'>
@@ -38,11 +38,13 @@ class NavBar extends Component{
               Leader Board
             </NavLink>
           </li>
-          <li onClick={this.onLogout} className='right-aligned'>
-            <button className='logout'>
-              Logout
-            </button>
-          </li>
+          {authenticated && 
+            <li onClick={this.onLogout} className='right-aligned'>
+              <button className='logout'>
+                Logout
+              </button>
+            </li>
+          }
         </ul>
       </nav>
     )
