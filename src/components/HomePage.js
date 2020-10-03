@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import QuestionOverview from './QuestionOverview'
+import {answeredQuestionSelector, unansweredQuestionSelector} from '../utils/helpers'
 
 class HomePage extends Component {
   state = {
@@ -47,18 +48,10 @@ class HomePage extends Component {
   }
 }
 
-function mapStateToProps({authedUser, questions}){
-  const questionValues = Object.values(questions)
-  const sortedQuestions = questionValues.sort((a, b) => (a.timestamp < b.timestamp) ? 1 : -1)
-  const answeredQuestions = sortedQuestions
-    .filter(q => q.optionOne.votes.includes(authedUser) || q.optionTwo.votes.includes(authedUser))
-    .map(q => q.id)
-  const unansweredQuestions = sortedQuestions
-    .filter(q => !answeredQuestions.includes(q.id))
-    .map(q => q.id)
+function mapStateToProps(state){
   return {
-    answeredQuestions,
-    unansweredQuestions
+    answeredQuestions: answeredQuestionSelector(state),
+    unansweredQuestions: unansweredQuestionSelector(state)
   }
 }
 

@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {userRankSelector, userAnswerPointSelector, userQuestionPointSelector} from '../utils/helpers'
 
 class LeaderboardEntry extends Component {
   render(){
@@ -26,15 +27,13 @@ class LeaderboardEntry extends Component {
   }
 }
 
-function mapStateToProps({users}, {id, position}){
+function mapStateToProps({users}, {id}){
   const user = users[id]
-  const answers = Object.values(user.answers).length
-  const questions = user.questions.length
   return {
     user,
-    answers,
-    questions,
-    position
+    answers: userAnswerPointSelector(users, id),
+    questions: userQuestionPointSelector(users, id),
+    position: userRankSelector(users, id)
   }
 }
 
